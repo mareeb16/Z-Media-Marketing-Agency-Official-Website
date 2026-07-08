@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z Media Marketing Agency — Helping Brands. Building Futures.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0908;
+  --bg-soft:#121110;
+  --panel:#15130f;
+  --panel-2:#1b1812;
+  --line:rgba(212,175,90,0.16);
+  --line-strong:rgba(212,175,90,0.35);
+  --gold:#d4af5a;
+  --gold-bright:#f3d889;
+  --gold-deep:#9c7a2e;
+  --text:#f1ece0;
+  --text-dim:#a39d8c;
+  --text-faint:#6f6a5c;
+  --shadow:0 30px 60px rgba(0,0,0,0.5);
+  --radius:2px;
+}
+[data-theme="light"]{
+  --bg:#faf7f0;
+  --bg-soft:#f3eee1;
+  --panel:#ffffff;
+  --panel-2:#f6f1e4;
+  --line:rgba(156,122,46,0.25);
+  --line-strong:rgba(156,122,46,0.5);
+  --gold:#9c7a2e;
+  --gold-bright:#b8902f;
+  --gold-deep:#7a5e1f;
+  --text:#1c1a14;
+  --text-dim:#5c5644;
+  --text-faint:#8c8670;
+  --shadow:0 30px 60px rgba(60,45,10,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  transition:background .5s ease, color .5s ease;
+}
+::selection{background:var(--gold);color:var(--bg);}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:0.01em;}
+a{text-decoration:none;color:inherit;}
+.eyebrow{
+  font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.32em;
+  text-transform:uppercase;color:var(--gold);font-weight:600;
+  display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--gold);display:inline-block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.section{padding:140px 0;position:relative;}
+.section-sm{padding:90px 0;}
+
+/* grain texture overlay */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.035;mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:22px 0;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:all .4s ease;
+}
+header.scrolled{
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+  padding:14px 0;
+}
+.navbar{display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:28px;
+  width:42px;height:42px;border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+  transform:rotate(0deg);transition:transform .6s ease;
+}
+.logo:hover .logo-mark{transform:rotate(8deg);}
+.logo-text{line-height:1.1;}
+.logo-text strong{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:0.06em;font-weight:700;}
+.logo-text span{display:block;font-size:9px;letter-spacing:0.28em;color:var(--text-faint);text-transform:uppercase;margin-top:2px;}
+
+.nav-links{display:flex;gap:42px;align-items:center;}
+.nav-links a{
+  font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);
+  position:relative;padding-bottom:4px;transition:color .3s ease;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+  transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+
+.nav-right{display:flex;align-items:center;gap:22px;}
+.theme-toggle{
+  width:54px;height:28px;border:1px solid var(--line-strong);border-radius:20px;
+  position:relative;cursor:pointer;background:var(--panel);flex-shrink:0;
+}
+.theme-toggle .knob{
+  position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;
+  background:var(--gold);transition:transform .4s cubic-bezier(.6,.1,.2,1);
+  display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--bg);
+}
+[data-theme="light"] .theme-toggle .knob{transform:translateX(26px);}
+.cta-btn{
+  border:1px solid var(--gold);color:var(--gold);
+  padding:11px 26px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+  transition:all .35s ease;white-space:nowrap;
+}
+.cta-btn:hover{background:var(--gold);color:var(--bg);}
+.cta-btn.solid{background:var(--gold);color:var(--bg);}
+.cta-btn.solid:hover{background:var(--gold-bright);}
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.burger span{width:24px;height:1px;background:var(--text);}
+
+@media(max-width:920px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:280px;background:var(--bg-soft);
+    flex-direction:column;justify-content:center;align-items:flex-start;padding:0 40px;
+    transform:translateX(100%);transition:transform .45s cubic-bezier(.6,.1,.2,1);border-left:1px solid var(--line);}
+  .nav-links.open{transform:translateX(0);}
+  .burger{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;
+  padding-top:100px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 700px 500px at 78% 18%, rgba(212,175,90,0.14), transparent 70%),
+    radial-gradient(ellipse 900px 700px at 10% 90%, rgba(212,175,90,0.06), transparent 70%);
+}
+.hero-z{
+  position:absolute;right:-4%;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:min(46vw,640px);line-height:1;color:transparent;
+  -webkit-text-stroke:1px var(--line-strong);
+  user-select:none;z-index:0;opacity:.6;
+  animation:float-z 9s ease-in-out infinite;
+}
+@keyframes float-z{0%,100%{transform:translateY(-50%) translateX(0);}50%{transform:translateY(-53%) translateX(-10px);}}
+
+.hero-content{position:relative;z-index:2;max-width:760px;}
+.hero-content .eyebrow{opacity:0;animation:rise .8s ease forwards .15s;}
+.hero h1{
+  font-size:clamp(46px,6.4vw,86px);line-height:1.04;font-weight:600;
+  margin-bottom:28px;opacity:0;animation:rise .9s ease forwards .35s;
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:500;}
+.hero p.lead{
+  font-size:18px;line-height:1.8;color:var(--text-dim);max-width:560px;margin-bottom:42px;
+  opacity:0;animation:rise .9s ease forwards .55s;
+}
+.hero-ctas{display:flex;gap:18px;flex-wrap:wrap;opacity:0;animation:rise .9s ease forwards .75s;}
+@keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+
+.hero-stats{
+  display:flex;gap:0;margin-top:88px;border-top:1px solid var(--line);padding-top:32px;max-width:700px;
+  opacity:0;animation:rise .9s ease forwards .95s;
+}
+.hero-stats div{flex:1;padding-right:30px;}
+.hero-stats strong{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold);font-weight:600;}
+.hero-stats span{font-size:11.5px;letter-spacing:0.08em;color:var(--text-faint);text-transform:uppercase;}
+
+.scroll-cue{
+  position:absolute;bottom:42px;left:32px;display:flex;align-items:center;gap:14px;z-index:2;
+  font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-faint);
+}
+.scroll-cue .line{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);position:relative;overflow:hidden;}
+.scroll-cue .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:50%;background:var(--gold-bright);
+  animation:cue 2.2s ease-in-out infinite;}
+@keyframes cue{0%{top:-50%;}100%{top:100%;}}
+
+/* ============ reveal on scroll ============ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease, transform .8s cubic-bezier(.16,.8,.3,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-stagger > * {opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s cubic-bezier(.16,.8,.3,1);}
+.reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+.reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.in > *:nth-child(2){transition-delay:.15s;}
+.reveal-stagger.in > *:nth-child(3){transition-delay:.25s;}
+.reveal-stagger.in > *:nth-child(4){transition-delay:.35s;}
+.reveal-stagger.in > *:nth-child(5){transition-delay:.45s;}
+.reveal-stagger.in > *:nth-child(6){transition-delay:.55s;}
+
+/* ============ SECTION HEAD ============ */
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px;flex-wrap:wrap;}
+.section-head h2{font-size:clamp(32px,4vw,52px);font-weight:600;max-width:600px;line-height:1.12;}
+.section-head p{color:var(--text-dim);max-width:360px;font-size:15px;line-height:1.7;}
+
+/* ============ ABOUT ============ */
+.about{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start;}
+.about-grid h3{font-size:28px;margin-bottom:16px;color:var(--gold);font-style:italic;font-weight:500;}
+.about-lead{font-size:24px;line-height:1.5;font-weight:400;font-family:'Cormorant Garamond',serif;color:var(--text);}
+.values{display:grid;gap:0;margin-top:10px;}
+.value-row{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--line);}
+.value-row:last-child{border-bottom:1px solid var(--line);}
+.value-num{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-deep);}
+.value-row h4{font-size:19px;margin-bottom:6px;font-weight:600;}
+.value-row p{color:var(--text-dim);font-size:14.5px;line-height:1.7;}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.service-card{
+  background:var(--bg);padding:46px 36px;position:relative;overflow:hidden;
+  transition:background .4s ease;cursor:default;
+}
+.service-card:hover{background:var(--panel-2);}
+.service-card .si{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-faint);margin-bottom:30px;display:block;}
+.service-card h3{font-size:23px;margin-bottom:14px;font-weight:600;}
+.service-card p{color:var(--text-dim);font-size:14.5px;line-height:1.75;}
+.service-card .arrow{
+  position:absolute;bottom:30px;right:30px;width:34px;height:34px;border:1px solid var(--line-strong);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);
+  font-size:14px;opacity:0;transform:translate(-6px,6px);transition:all .35s ease;
+}
+.service-card:hover .arrow{opacity:1;transform:translate(0,0);}
+
+/* ============ WHY ============ */
+.why{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;}
+.why-item{text-align:left;}
+.why-item .wn{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--gold);font-weight:600;line-height:1;margin-bottom:18px;display:block;}
+.why-item h4{font-size:17px;margin-bottom:10px;font-weight:600;}
+.why-item p{font-size:13.5px;color:var(--text-dim);line-height:1.7;}
+
+/* ============ PORTFOLIO ============ */
+.portfolio-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:50px;}
+.ptab{
+  padding:10px 22px;border:1px solid var(--line);font-size:12px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:all .3s ease;
+}
+.ptab.active,.ptab:hover{border-color:var(--gold);color:var(--gold);}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+.pf-item{
+  aspect-ratio:4/5;position:relative;overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(155deg,var(--panel-2),var(--bg-soft));
+}
+.pf-item .pf-bg{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:90px;color:var(--line-strong);
+  transition:transform .7s cubic-bezier(.16,.8,.3,1);
+}
+.pf-item:hover .pf-bg{transform:scale(1.12);}
+.pf-overlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;
+  background:linear-gradient(to top, rgba(0,0,0,0.78), transparent 60%);
+  opacity:0;transition:opacity .4s ease;
+}
+[data-theme="light"] .pf-overlay{background:linear-gradient(to top, rgba(20,16,8,0.82), transparent 60%);}
+.pf-item:hover .pf-overlay{opacity:1;}
+.pf-overlay span{font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.pf-overlay h4{color:#fff;font-size:20px;font-weight:600;}
+
+/* ============ PACKAGES ============ */
+.packages{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;}
+.pkg-card{
+  border:1px solid var(--line);background:var(--panel);padding:44px 34px;display:flex;flex-direction:column;
+  position:relative;transition:transform .4s ease, border-color .4s ease;
+}
+.pkg-card:hover{transform:translateY(-8px);border-color:var(--line-strong);}
+.pkg-card.featured{border-color:var(--gold);background:var(--panel-2);}
+.pkg-badge{
+  position:absolute;top:-1px;right:-1px;background:var(--gold);color:var(--bg);
+  font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 16px;font-weight:600;
+}
+.pkg-tier{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600;}
+.pkg-card h3{font-size:30px;margin-bottom:6px;font-weight:600;}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--text);margin:18px 0 6px;font-weight:600;}
+.pkg-price span{font-size:13px;color:var(--text-faint);font-family:'Inter',sans-serif;}
+.pkg-value{font-size:12.5px;color:var(--text-faint);margin-bottom:28px;text-decoration:line-through;text-decoration-color:var(--text-faint);}
+.pkg-feats{list-style:none;flex:1;margin-bottom:32px;}
+.pkg-feats li{
+  font-size:13.5px;color:var(--text-dim);padding:11px 0;border-top:1px solid var(--line);
+  display:flex;gap:10px;line-height:1.5;
+}
+.pkg-feats li::before{content:"—";color:var(--gold);flex-shrink:0;}
+.pkg-cta{
+  text-align:center;padding:14px;border:1px solid var(--gold);color:var(--gold);
+  font-size:12px;letter-spacing:0.14em;text-transform:uppercase;transition:all .3s ease;
+}
+.pkg-card.featured .pkg-cta{background:var(--gold);color:var(--bg);}
+.pkg-cta:hover{background:var(--gold);color:var(--bg);}
+
+.custom-note{
+  margin-top:50px;border:1px dashed var(--line-strong);padding:36px 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
+}
+.custom-note h4{font-size:21px;font-weight:600;margin-bottom:6px;}
+.custom-note p{color:var(--text-dim);font-size:14px;max-width:480px;}
+
+/* ============ TESTIMONIALS ============ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.testi-card{background:var(--bg);padding:42px 34px;}
+.testi-stars{color:var(--gold);font-size:14px;letter-spacing:3px;margin-bottom:24px;}
+.testi-card p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.6;color:var(--text);margin-bottom:28px;}
+.testi-name{font-size:13px;font-weight:600;letter-spacing:0.04em;}
+.testi-role{font-size:11.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;}
+
+/* ============ CONTACT CTA ============ */
+.contact-cta{
+  background:var(--panel-2);border:1px solid var(--line);padding:90px 70px;text-align:center;position:relative;overflow:hidden;
+}
+.contact-cta::before{
+  content:"Z";position:absolute;font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:480px;color:var(--line);left:50%;top:50%;transform:translate(-50%,-46%);line-height:1;z-index:0;
+}
+.contact-cta-inner{position:relative;z-index:1;}
+.contact-cta h2{font-size:clamp(32px,5vw,58px);margin-bottom:22px;}
+.contact-cta p{color:var(--text-dim);max-width:520px;margin:0 auto 40px;font-size:16px;line-height:1.7;}
+.cc-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+
+/* ============ CONTACT DETAIL ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:80px;}
+.contact-form{display:flex;flex-direction:column;gap:22px;}
+.fgroup{position:relative;}
+.fgroup input,.fgroup textarea{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+  padding:14px 4px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;outline:none;
+  transition:border-color .3s ease;resize:none;
+}
+.fgroup input:focus,.fgroup textarea:focus{border-color:var(--gold);}
+.fgroup label{
+  position:absolute;left:4px;top:14px;color:var(--text-faint);font-size:15px;pointer-events:none;
+  transition:all .25s ease;
+}
+.fgroup input:focus + label,.fgroup input:not(:placeholder-shown) + label,
+.fgroup textarea:focus + label,.fgroup textarea:not(:placeholder-shown) + label{
+  top:-12px;font-size:11px;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;
+}
+.submit-btn{
+  margin-top:10px;align-self:flex-start;background:var(--gold);color:var(--bg);border:none;
+  padding:15px 36px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;
+  transition:background .3s ease;
+}
+.submit-btn:hover{background:var(--gold-bright);}
+
+.contact-info{display:flex;flex-direction:column;gap:0;}
+.ci-row{display:flex;gap:22px;padding:24px 0;border-top:1px solid var(--line);}
+.ci-row:last-child{border-bottom:1px solid var(--line);}
+.ci-icon{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;font-size:16px;}
+.ci-row h4{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+.ci-row p{font-size:16px;color:var(--text);}
+.social-row{display:flex;gap:14px;margin-top:30px;}
+.social-row a{
+  width:40px;height:40px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:all .3s ease;
+}
+.social-row a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px);}
+
+/* ============ FOOTER ============ */
+footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:70px 0 28px;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
+.footer-brand p{color:var(--text-dim);font-size:14px;line-height:1.8;margin-top:18px;max-width:300px;}
+.footer-col h5{font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-col a{display:block;font-size:14px;color:var(--text-dim);margin-bottom:13px;transition:color .25s ease;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{
+  border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;font-size:12.5px;color:var(--text-faint);
+}
+.footer-bottom a{color:var(--text-faint);}
+.footer-bottom a:hover{color:var(--gold);}
+
+@media(max-width:920px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:50px;}
+  .services-grid,.why-grid,.portfolio-grid,.pkg-grid,.testi-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .hero-z{font-size:60vw;opacity:.35;}
+  .section{padding:90px 0;}
+}
+
+
+/* ===================================================
+   WEBSITE DEVELOPMENT PACKAGES (PREMIUM)
+=================================================== */
+
+.web-packages{
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+}
+
+.web-packages::before{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    background:radial-gradient(circle,
+    rgba(212,175,90,.06) 0%,
+    transparent 70%);
+    top:-250px;
+    right:-250px;
+    pointer-events:none;
+}
+
+.web-grid{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+    margin-top:60px;
+
+}
+
+/* CARD */
+
+.web-card{
+
+    background:linear-gradient(
+    180deg,
+    var(--panel),
+    var(--panel-2));
+
+    border:1px solid var(--line);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.45s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:670px;
+
+}
+
+/* GOLD TOP LINE */
+
+.web-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent);
+
+}
+
+/* HOVER */
+
+.web-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--gold);
+
+    box-shadow:
+
+    0 30px 60px rgba(0,0,0,.45),
+
+    0 0 35px rgba(212,175,90,.18);
+
+}
+
+/* POPULAR */
+
+.web-card.popular{
+
+    border:1px solid var(--gold);
+
+    transform:scale(1.02);
+
+}
+
+.web-card.popular:hover{
+
+    transform:scale(1.03)
+    translateY(-12px);
+
+}
+
+/* RIBBON */
+
+.web-ribbon{
+
+    position:absolute;
+
+    top:18px;
+
+    right:-40px;
+
+    background:var(--gold);
+
+    color:#000;
+
+    padding:7px 50px;
+
+    transform:rotate(45deg);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+}
+
+/* BODY */
+
+.web-body{
+
+    padding:45px 32px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+}
+
+/* ICON */
+
+.web-icon{
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    color:var(--gold);
+
+    margin-bottom:30px;
+
+    transition:.45s;
+
+    background:rgba(212,175,90,.04);
+
+}
+
+.web-card:hover .web-icon{
+
+    transform:rotate(12deg)
+    scale(1.08);
+
+    border-color:var(--gold);
+
+    background:rgba(212,175,90,.08);
+
+}
+
+/* SMALL TITLE */
+
+.web-tier{
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.30em;
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+
+}
+
+/* HEADING */
+
+.web-title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:34px;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+}
+
+/* DESCRIPTION */
+
+.web-desc{
+
+    color:var(--text-dim);
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    margin-bottom:26px;
+
+}
+
+/* PRICE */
+
+.web-price{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:42px;
+
+    margin-bottom:5px;
+
+}
+
+.web-price span{
+
+    display:block;
+
+    font-family:'Inter';
+
+    color:var(--text-faint);
+
+    font-size:14px;
+
+    margin-top:8px;
+
+}
+
+/* FEATURES */
+
+.web-features{
+
+    list-style:none;
+
+    margin:35px 0;
+
+    flex:1;
+
+}
+
+.web-features li{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    padding:14px 0;
+
+    border-top:1px solid var(--line);
+
+    color:var(--text-dim);
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+.web-features li:last-child{
+
+    border-bottom:1px solid var(--line);
+
+}
+
+.web-features li i{
+
+    color:var(--gold);
+
+    font-style:normal;
+
+    font-weight:bold;
+
+}
+
+/* BUTTON */
+
+.web-btn{
+
+    display:block;
+
+    text-align:center;
+
+    padding:16px;
+
+    border:1px solid var(--gold);
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:.18em;
+
+    font-size:11px;
+
+    transition:.4s;
+
+}
+
+.web-btn:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.web-card.popular .web-btn{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.web-card.popular .web-btn:hover{
+
+    background:transparent;
+
+    color:var(--gold);
+
+}
+
+/* BOTTOM CTA */
+
+.web-bottom{
+
+    margin-top:80px;
+
+    border:1px solid var(--line);
+
+    background:var(--panel);
+
+    padding:50px;
+
+    text-align:center;
+
+}
+
+.web-bottom h3{
+
+    font-size:36px;
+
+    margin-bottom:15px;
+
+}
+
+.web-bottom p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:var(--text-dim);
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+.web-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.web-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.web-card{
+
+min-height:auto;
+
+}
+
+.web-bottom{
+
+padding:35px 25px;
+
+}
+
+}
+
+
+
+/* ==========================================
+   PREMIUM LUXURY EFFECTS
+========================================== */
+
+/* Floating Animation */
+
+@keyframes floating{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+.web-icon{
+
+animation:floating 4s ease-in-out infinite;
+
+}
+
+
+/* GOLD SHIMMER */
+
+.web-card::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-40%;
+
+width:55%;
+
+height:250%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.18),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:1s;
+
+pointer-events:none;
+
+}
+
+.web-card:hover::after{
+
+left:150%;
+
+}
+
+
+/* GOLD GLOW */
+
+.web-card:hover .web-title{
+
+color:var(--gold);
+
+transition:.4s;
+
+}
+
+.web-card:hover .web-price{
+
+color:var(--gold-bright);
+
+transition:.4s;
+
+}
+
+
+/* BUTTON */
+
+.web-btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.web-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.12);
+
+transition:.45s;
+
+}
+
+.web-btn:hover::before{
+
+left:100%;
+
+}
+
+
+/* FEATURES */
+
+.web-features li{
+
+transition:.35s;
+
+}
+
+.web-card:hover .web-features li{
+
+padding-left:8px;
+
+color:var(--text);
+
+}
+
+
+/* ICON GLOW */
+
+.web-card:hover .web-icon{
+
+box-shadow:
+
+0 0 20px rgba(212,175,90,.20),
+
+0 0 40px rgba(212,175,90,.08);
+
+}
+
+
+/* PRICE ANIMATION */
+
+.web-price{
+
+transition:.35s;
+
+}
+
+.web-card:hover .web-price{
+
+transform:scale(1.04);
+
+}
+
+
+/* DESCRIPTION */
+
+.web-desc{
+
+transition:.35s;
+
+}
+
+.web-card:hover .web-desc{
+
+color:var(--text);
+
+}
+
+
+/* CTA */
+
+.web-bottom{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.web-bottom::before{
+
+content:"";
+
+position:absolute;
+
+width:700px;
+
+height:700px;
+
+background:radial-gradient(circle,
+
+rgba(212,175,90,.05),
+
+transparent 70%);
+
+left:50%;
+
+top:-420px;
+
+transform:translateX(-50%);
+
+pointer-events:none;
+
+}
+
+
+/* SECTION TITLE */
+
+.web-packages .section-head h2{
+
+position:relative;
+
+display:inline-block;
+
+}
+
+.web-packages .section-head h2::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-14px;
+
+width:90px;
+
+height:2px;
+
+background:var(--gold);
+
+}
+
+
+/* GOLD DIVIDER */
+
+.web-packages .section-head{
+
+margin-bottom:70px;
+
+}
+
+
+/* CARD SHADOW */
+
+.web-card{
+
+backdrop-filter:blur(4px);
+
+}
+
+
+/* SMOOTH TRANSITIONS */
+
+.web-card,
+.web-icon,
+.web-btn,
+.web-title,
+.web-price,
+.web-desc{
+
+transition:.45s;
+
+}
+
+
+</style>
+</head>
+<body data-theme="dark">
+<div class="grain"></div>
+
+<!-- ============ NAV ============ -->
+<header id="siteHeader">
+  <div class="wrap navbar">
+    <a href="#home" class="logo">
+      <span class="logo-mark">Z</span>
+      <span class="logo-text"><strong>Z MEDIA</strong><span>Marketing Agency</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div class="theme-toggle" id="themeToggle" title="Toggle dark / light mode">
+        <div class="knob">☀</div>
+      </div>
+      <a href="#contact" class="cta-btn solid">Request a Quote</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-z">Z</div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">Strategy · Creativity · Growth</div>
+    <h1>Helping Brands.<br><em>Building</em> Futures.</h1>
+    <p class="lead">We create meaningful brands through strategic marketing, compelling design, and innovative digital experiences that deliver measurable business growth.</p>
+    <div class="hero-ctas">
+      <a href="#packages" class="cta-btn solid">Get Started</a>
+      <a href="#portfolio" class="cta-btn">View Portfolio</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>150+</strong><span>Brands Served</span></div>
+      <div><strong>500+</strong><span>Campaigns Launched</span></div>
+      <div><strong>98%</strong><span>Client Retention</span></div>
+      <div><strong>5★</strong><span>Average Rating</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about section" id="about">
+  <div class="wrap">
+    <div class="eyebrow reveal">About Z Media</div>
+    <div class="about-grid">
+      <div class="reveal">
+        <h3>Who We Are</h3>
+        <p class="about-lead">Z Media is a full-service marketing agency built on one belief — every brand has a story worth telling well, and a future worth building strategically.</p>
+      </div>
+      <div>
+        <div class="values">
+          <div class="value-row reveal">
+            <div class="value-num">Mission</div>
+            <div><h4>Growth, Engineered Deliberately</h4><p>To help businesses of every size grow through data-backed strategy, creative content, and digital execution that actually converts.</p></div>
+          </div>
+          <div class="value-row reveal">
+            <div class="value-num">Vision</div>
+            <div><h4>The Agency Brands Trust First</h4><p>To become the most trusted marketing partner for ambitious brands across Pakistan and beyond — known for results, not noise.</p></div>
+          </div>
+          <div class="value-row reveal">
+            <div class="value-num">Values</div>
+            <div><h4>Transparent, Creative, Accountable</h4><p>Strategic thinking, honest pricing, dedicated support, and work we're proud to put our name on — every single time.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>What We Do, From Strategy to Screen</h2>
+      <p>A complete suite of services designed to take your brand from idea to industry presence.</p>
+    </div>
+    <div class="services-grid reveal-stagger">
+      <div class="service-card"><span class="si">01</span><h3>Branding & Identity</h3><p>Logos, brand guidelines, and visual systems that make your business instantly recognizable.</p><div class="arrow">↗</div></div>
+      <div class="service-card"><span class="si">02</span><h3>Social Media Marketing</h3><p>Strategy, content calendars, and community management across every platform that matters.</p><div class="arrow">↗</div></div>
+      <div class="service-card"><span class="si">03</span><h3>Graphic Design</h3><p>Scroll-stopping posts, carousels, and promotional creatives built for engagement.</p><div class="arrow">↗</div></div>
+      <div class="service-card"><span class="si">04</span><h3>Website Development</h3><p>Fast, responsive, conversion-focused websites — from 5-page brochures to full platforms.</p><div class="arrow">↗</div></div>
+      <div class="service-card"><span class="si">05</span><h3>Content Creation</h3><p>Reels, copywriting, captions, and campaigns crafted around your brand voice.</p><div class="arrow">↗</div></div>
+      <div class="service-card"><span class="si">06</span><h3>Performance Marketing</h3><p>Meta Ads, lead generation, retargeting and conversion optimization, backed by data.</p><div class="arrow">↗</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="why section" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Why Brands Choose Z Media</h2>
+    </div>
+    <div class="why-grid reveal-stagger">
+      <div class="why-item"><span class="wn">01</span><h4>Results Driven</h4><p>Strategies built around measurable growth, not vanity metrics.</p></div>
+      <div class="why-item"><span class="wn">02</span><h4>Creative Content</h4><p>Design and storytelling crafted to convert, not just impress.</p></div>
+      <div class="why-item"><span class="wn">03</span><h4>Data Backed</h4><p>Every decision is informed by research, testing, and analytics.</p></div>
+      <div class="why-item"><span class="wn">04</span><h4>Dedicated Support</h4><p>A real account manager, always reachable, always invested.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<!-- <section class="section" id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Featured Work</h2>
+      <p>A glimpse into the brands we've helped grow, design, and launch.</p>
+    </div>
+    <div class="portfolio-tabs reveal">
+      <div class="ptab active">All</div>
+      <div class="ptab">Branding</div>
+      <div class="ptab">Social Media</div>
+      <div class="ptab">Websites</div>
+      <div class="ptab">Photography</div>
+      <div class="ptab">Video</div>
+    </div>
+    <div class="portfolio-grid reveal-stagger">
+      <div class="pf-item"><div class="pf-bg">B</div><div class="pf-overlay"><span>Branding</span><h4>Lumè Skincare</h4></div></div>
+      <div class="pf-item"><div class="pf-bg">S</div><div class="pf-overlay"><span>Social Media</span><h4>Forge Fitness</h4></div></div>
+      <div class="pf-item"><div class="pf-bg">W</div><div class="pf-overlay"><span>Website</span><h4>Orbit Realty</h4></div></div>
+      <div class="pf-item"><div class="pf-bg">P</div><div class="pf-overlay"><span>Photography</span><h4>Saffron Kitchen</h4></div></div>
+      <div class="pf-item"><div class="pf-bg">V</div><div class="pf-overlay"><span>Video</span><h4>Northbound Travel</h4></div></div>
+      <div class="pf-item"><div class="pf-bg">B</div><div class="pf-overlay"><span>Branding</span><h4>Velvet & Co.</h4></div></div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ============ PACKAGES ============ -->
+<section class="packages section" id="packages">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Marketing Packages 2026</h2>
+      <p>Transparent pricing built for brands at every stage of growth.</p>
+    </div>
+    <div class="pkg-grid reveal-stagger">
+      <div class="pkg-card">
+        <div class="pkg-tier">★ Silver</div>
+        <h3>Starter</h3>
+        <div class="pkg-price">PKR 19,999<span> /month</span></div>
+        <div class="pkg-value">Package value worth PKR 35,000+</div>
+        <ul class="pkg-feats">
+          <li>8–10 professional reels per month</li>
+          <li>6 custom social media posts</li>
+          <li>Caption & hashtag research</li>
+          <li>Social profile optimization</li>
+          <li>Basic SEO analysis</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Choose Silver</a>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-tier">♛ Gold</div>
+        <h3>Growth</h3>
+        <div class="pkg-price">PKR 39,999<span> /month</span></div>
+        <div class="pkg-value">Package value worth PKR 70,000+</div>
+        <ul class="pkg-feats">
+          <li>15–20 high-quality reels</li>
+          <li>15 professional social posts</li>
+          <li>Professional graphic & story designs</li>
+          <li>Premium content writing & copywriting</li>
+          <li>Advanced SEO & growth strategy</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Choose Gold</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-tier">◆ Diamond</div>
+        <h3>Elite</h3>
+        <div class="pkg-price">PKR 79,999<span> /month</span></div>
+        <div class="pkg-value">Package value worth PKR 150,000+</div>
+        <ul class="pkg-feats">
+          <li>Custom reels & video campaigns</li>
+          <li>Unlimited custom post designs</li>
+          <li>Full social media management</li>
+          <li>Meta Ads & lead generation campaigns</li>
+          <li>Audience research & competitor analysis</li>
+          <li>Monthly performance & ROI reporting</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Choose Diamond</a>
+      </div>
+    </div>
+
+
+
+
+    <div class="custom-note reveal">
+      <div>
+        <h4>Need something tailored?</h4>
+        <p>From website development to individual reel editing and ad campaigns — we build custom solutions priced around your goals.</p>
+      </div>
+      <a href="#contact" class="cta-btn">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ==========================================
+        WEBSITE DEVELOPMENT PACKAGES
+=========================================== -->
+<section class="web-packages section" id="website-packages">
+
+    <div class="wrap">
+
+        <div class="section-head reveal">
+            <h2>Website Development Packages</h2>
+
+            <p>
+                We design and develop premium websites that are
+                beautiful, fast, secure, and built to convert visitors
+                into customers.
+            </p>
+        </div>
+
+        <div class="web-grid reveal-stagger">
+
+            <!-- ================= BASIC ================= -->
+
+            <div class="web-card">
+
+                <div class="web-body">
+
+                    <div class="web-icon">
+                        ◈
+                    </div>
+
+                    <div class="web-tier">
+                        Basic Package
+                    </div>
+
+                    <h3 class="web-title">
+                        Starter
+                    </h3>
+
+                    <p class="web-desc">
+                        Perfect for startups, freelancers and
+                        small businesses looking for a professional online presence.
+                    </p>
+
+                    <div class="web-price">
+                        PKR 15,000
+                        <span>Starting From</span>
+                    </div>
+
+                    <ul class="web-features">
+
+                        <li><i>✓</i> Up to 5 Responsive Pages</li>
+
+                        <li><i>✓</i> Mobile Friendly Design</li>
+
+                        <li><i>✓</i> Contact Form</li>
+
+                        <li><i>✓</i> WhatsApp Integration</li>
+
+                        <li><i>✓</i> Basic SEO Setup</li>
+
+                        <li><i>✓</i> Google Maps Integration</li>
+
+                        <li><i>✓</i> Speed Optimization</li>
+
+                        <li><i>✓</i> 7 Days Free Support</li>
+
+                    </ul>
+
+                    <a href="#contact" class="web-btn">
+                        Get Started
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ================= STANDARD ================= -->
+
+            <div class="web-card popular">
+
+                <div class="web-ribbon">
+                    Most Popular
+                </div>
+
+                <div class="web-body">
+
+                    <div class="web-icon">
+                        ★
+                    </div>
+
+                    <div class="web-tier">
+                        Standard Package
+                    </div>
+
+                    <h3 class="web-title">
+                        Business
+                    </h3>
+
+                    <p class="web-desc">
+                        Ideal for businesses that need a premium
+                        website with additional functionality.
+                    </p>
+
+                    <div class="web-price">
+                        PKR 35,000
+                        <span>Starting From</span>
+                    </div>
+
+                    <ul class="web-features">
+
+                        <li><i>✓</i> Up to 10 Pages</li>
+
+                        <li><i>✓</i> Premium UI/UX Design</li>
+
+                        <li><i>✓</i> CMS Integration</li>
+
+                        <li><i>✓</i> Blog System</li>
+
+                        <li><i>✓</i> SEO Optimized</li>
+
+                        <li><i>✓</i> Contact & Inquiry Forms</li>
+
+                        <li><i>✓</i> Animations & Effects</li>
+
+                        <li><i>✓</i> 30 Days Support</li>
+
+                    </ul>
+
+                    <a href="#contact" class="web-btn">
+                        Get Started
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ================= PREMIUM ================= -->
+
+            <div class="web-card">
+
+                <div class="web-body">
+
+                    <div class="web-icon">
+                        ♛
+                    </div>
+
+                    <div class="web-tier">
+                        Premium Package
+                    </div>
+
+                    <h3 class="web-title">
+                        Professional
+                    </h3>
+
+                    <p class="web-desc">
+                        Built for companies that require advanced
+                        functionality and a premium digital experience.
+                    </p>
+
+                    <div class="web-price">
+                        PKR 60,000
+                        <span>Starting From</span>
+                    </div>
+
+                    <ul class="web-features">
+
+                        <li><i>✓</i> Up to 20 Pages</li>
+
+                        <li><i>✓</i> Custom Dashboard</li>
+
+                        <li><i>✓</i> User Login System</li>
+
+                        <li><i>✓</i> Database Integration</li>
+
+                        <li><i>✓</i> Advanced Security</li>
+
+                        <li><i>✓</i> Performance Optimization</li>
+
+                        <li><i>✓</i> Google Analytics Setup</li>
+
+                        <li><i>✓</i> 60 Days Support</li>
+
+                    </ul>
+
+                    <a href="#contact" class="web-btn">
+                        Get Started
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ================= ENTERPRISE ================= -->
+
+            <div class="web-card">
+
+                <div class="web-body">
+
+                    <div class="web-icon">
+                        ◆
+                    </div>
+
+                    <div class="web-tier">
+                        Enterprise Package
+                    </div>
+
+                    <h3 class="web-title">
+                        Enterprise
+                    </h3>
+
+                    <p class="web-desc">
+                        Fully customized enterprise solutions
+                        built around your business requirements.
+                    </p>
+
+                    <div class="web-price">
+                        Custom
+                        <span>Let's Discuss</span>
+                    </div>
+
+                    <ul class="web-features">
+
+                        <li><i>✓</i> Unlimited Pages</li>
+
+                        <li><i>✓</i> Custom Features</li>
+
+                        <li><i>✓</i> API Integrations</li>
+
+                        <li><i>✓</i> CRM / ERP Integration</li>
+
+                        <li><i>✓</i> Payment Gateway</li>
+
+                        <li><i>✓</i> Cloud Deployment</li>
+
+                        <li><i>✓</i> Lifetime Consultation</li>
+
+                        <li><i>✓</i> Priority Support</li>
+
+                    </ul>
+
+                    <a href="#contact" class="web-btn">
+                        Request Quote
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= Bottom CTA ================= -->
+
+        <div class="web-bottom reveal">
+
+            <h3>
+                Need Something Completely Custom?
+            </h3>
+
+            <p>
+                Every business is unique. If your project requires custom
+                features, advanced integrations, or a tailored solution,
+                we'll create a personalized proposal that perfectly matches
+                your goals and budget.
+            </p>
+
+            <a href="#contact" class="cta-btn solid">
+                Request a Free Consultation
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Client Testimonials</h2>
+    </div>
+    <div class="testi-grid reveal-stagger">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Z Media rebuilt our entire social presence in two months. Engagement tripled and bookings followed."</p>
+        <div class="testi-name">Hira Aslam</div>
+        <div class="testi-role">Founder, Saffron Kitchen</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"The Gold package paid for itself within the first campaign. Strategic, fast, and genuinely creative."</p>
+        <div class="testi-name">Bilal Farooq</div>
+        <div class="testi-role">CEO, Forge Fitness</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Our new website converts visitors better than anything we've had before. Clean, fast, and on-brand."</p>
+        <div class="testi-name">Areeba Khan</div>
+        <div class="testi-role">Director, Orbit Realty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-cta reveal">
+      <div class="contact-cta-inner">
+        <div class="eyebrow" style="justify-content:center;">Let's Grow Together</div>
+        <h2>Your Growth Is Our Mission</h2>
+        <p>Tell us about your brand and we'll put together a strategy built specifically for your goals — no templates, no guesswork.</p>
+        <div class="cc-ctas">
+          <a href="#contact-form" class="cta-btn solid">Request a Quote</a>
+          <a href="https://wa.me/923442715699" target="_blank" class="cta-btn">
+    Call Us Now
+</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-grid" id="contact-form">
+      <form class="contact-form reveal" id="contactForm"><div class="fgroup">
+    <input type="text" id="name" placeholder=" " required>
+    <label>Full Name</label>
+</div>
+
+<div class="fgroup">
+    <input type="email" id="email" placeholder=" " required>
+    <label>Email Address</label>
+</div>
+
+<div class="fgroup">
+    <input type="text" id="phone" placeholder=" ">
+    <label>Phone Number</label>
+</div>
+
+<div class="fgroup">
+    <textarea id="project" rows="4" placeholder=" " required></textarea>
+    <label>Tell us about your project</label>
+</div>
+
+ <button type="submit" class="submit-btn">Send Message</button>
+
+</form>
+        
+
+       
+      
+
+      <div class="contact-info reveal">
+        <div class="ci-row">
+          <div class="ci-icon">☎</div>
+          <div><h4>Phone</h4><p>+92 344 2715699</p></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">✉</div>
+          <div><h4>Email</h4><p>zmarketingagency110@gmail.com</p></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">⌂</div>
+          <div><h4>Office</h4><p>Pakistan</p></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">🌐</div>
+          <div><h4>Website</h4><p>www.zmediaagency.com</p></div>
+        </div>
+        <div class="social-row">
+        
+          <a href="https://instagram.com/z_media_marketing1" target="_blank" title="Instagram">IG</a>
+         
+          <a href="https://wa.me/923442715699" target="_blank" title="WhatsApp">WA</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-text"><strong style="font-size:22px;">Z MEDIA</strong><span>Marketing Agency</span></span>
+        <p>Helping Brands. Building Futures. A full-service marketing agency for brands that want to grow with strategy, creativity, and data.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#packages">Packages</a>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Branding</a>
+        <a href="#services">Social Media</a>
+        <a href="#services">Web Development</a>
+        <a href="#services">Performance Ads</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+923001234567">+92 344 2715699</a>
+        <a href="mailto:info@zmediaagency.com">zmarketingagency110@gmail.com</a>
+        <a href="#contact">Get In Touch</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Z Media Marketing Agency. All rights reserved.</span>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script>
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const project = document.getElementById("project").value;
+
+    const message =
+`Hello Z Media!
+
+*New Client Inquiry*
+
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phone}
+
+📝 Project Details:
+${project}`;
+
+    const whatsappURL =
+`https://wa.me/923442715699?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+
+    form.reset();
+
+    document.querySelector(".submit-btn").textContent = "Message Sent ✓";
+});
+
+
+
+// theme toggle
+const root = document.body;
+const toggle = document.getElementById('themeToggle');
+const knob = toggle.querySelector('.knob');
+function setTheme(t){
+  root.setAttribute('data-theme', t);
+  knob.textContent = t === 'dark' ? '☀' : '☾';
+  localStorage.setItem('zmedia-theme', t);
+}
+toggle.addEventListener('click', ()=>{
+  const cur = root.getAttribute('data-theme');
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+});
+setTheme(localStorage.getItem('zmedia-theme') || 'dark');
+
+// header scroll state
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// mobile nav
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>navLinks.classList.remove('open')));
+
+// scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:0.15});
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el=>io.observe(el));
+
+// portfolio tabs (visual only)
+document.querySelectorAll('.ptab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
